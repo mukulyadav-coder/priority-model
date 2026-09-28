@@ -1,6 +1,6 @@
 # ================================================================
 # DYNAMIC URL EXTRACTION & CSV ENRICHMENT SYSTEM
-# ================================================================ 
+# ================================================================
 
 import re
 import html
@@ -16,7 +16,7 @@ import pandas as pd
 BASE_DIR = Path(__file__).resolve().parent
 RAW_FOLDER = BASE_DIR / "data" / "raw"
 OUTPUT_FOLDER = BASE_DIR / "data" / "processed"
-OUTPUT_FOLDER.mkdir(parents=True, exist_ok=True)  
+OUTPUT_FOLDER.mkdir(parents=True, exist_ok=True)
 
 # ================================================================
 # STATIC FALLBACK DICTIONARIES (Kept for accuracy)

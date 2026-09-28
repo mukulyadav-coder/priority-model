@@ -4,7 +4,6 @@ from keyword_quality import add_keyword_quality
 
 def _normalize_raw_columns(df):
     """Support both legacy project schema and Ubersuggest-style raw CSVs."""
-
     rename_map = {
         "Keywords": "Keyword",
         "Keyword": "Keyword",
