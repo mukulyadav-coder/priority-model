@@ -599,13 +599,28 @@ def process_file(file_path):
         f"PROCESSING: {file_path.name}\n"
         f"{'='*80}"
     )
-
     try:
-
         df = pd.read_csv(
             file_path,
             encoding='utf-8-sig',
             low_memory=False
+        )
+
+        # Remove duplicate columns such as Keyword.1,
+        # Estimated Visits.1, CPC.1, etc.
+        duplicate_columns = [
+            col
+            for col in df.columns
+            if re.search(r'\.\d+$', str(col))
+        ]
+
+        if duplicate_columns:
+            print(f"Removing duplicate columns: {duplicate_columns}")
+            df.drop(columns=duplicate_columns, inplace=True)
+
+    except Exception as e:
+        print(
+            f"ERROR reading CSV: {e}"
         )
 
     except Exception as e:
@@ -718,7 +733,7 @@ def process_file(file_path):
         "URL_Keyword",
         "Unknown",
         "Remaining_Url_Keywords",
-        "Priority Rank"
+        "Priority"
     ]
 
     for col in required_cols:
