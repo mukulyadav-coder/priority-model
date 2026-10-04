@@ -684,14 +684,12 @@ def process_file(file_path):
         errors="coerce"
     ).fillna(0)
 
-    df["Priority Rank"] = (
-        df["Volume"]
-        .rank(
-            method="dense",
-            ascending=False
-        )
-        .astype(int)
-    )
+    df["Priority Rank"] = pd.qcut(
+    df["Volume"].rank(method="first"),
+    q=5,
+    labels=[5, 4, 3, 2, 1]
+).astype(int)
+    
 
     # ============================================================
     # REQUIRED COLUMNS
